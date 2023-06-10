@@ -5,12 +5,16 @@ import Blog from '../models/blogModel.js';
 //Create new Blog
 
 const createPost = asyncHandler(async (req, res) => {
-  const { image, title, director, writer, description } = req.body;
+  const { image, title, directorRole, director, directorlink,writerRole , writer, writerlink, description } = req.body;
    await Blog.create({
     image,
     title,
+    directorRole,
     director,
+    directorlink,
+    writerRole,
     writer,
+    writerlink,
     description
   });
 
@@ -20,9 +24,9 @@ const createPost = asyncHandler(async (req, res) => {
 
 // Update an existing blog post
 const updatePost = asyncHandler(async (req, res) => {
-  const { postId, image, title, director, writer, description } = req.body;
-  const post = await Blog.findById(postId);
-  console.log(postId);
+  const { id, image, title,directorRole, director,directorlink,writerRole,  writer, writerlink, description } = req.body;
+  const post = await Blog.findById(id);
+  console.log(id);
 
   if (!post) {
     res.status(404).json({ message: 'Post not found' });
@@ -32,8 +36,12 @@ const updatePost = asyncHandler(async (req, res) => {
   // Update the post fields
   post.image = image;
   post.title = title;
+  post.directorRole = directorRole;
   post.director = director;
+  post.directorlink = directorlink;
+  post.writerRole = writerRole;
   post.writer = writer;
+  post.writerlink = writerlink;
   post.description = description;
 
   // Save the updated post
