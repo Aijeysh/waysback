@@ -1,12 +1,11 @@
 import express from 'express';
 import { createPost, deletePost, getAllPosts, updatePost } from '../controllers/blogController.js';
-import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').post(protect ,createPost);
-router.route('/update').put(protect, updatePost);
+router.route('/').post(createPost);
+router.route('/update').put(updatePost);
 router.get('/get', getAllPosts);
-router.delete('/delete/:id',protect, deletePost);
+router.delete('/delete/:id',deletePost);
 
 export default router;
