@@ -4,7 +4,7 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 router.post('/contact', registerContact);
-router.get('/getcontact', protect, getContact)
-router.delete('/delete/:id', protect, deleteContact)
+router.get('/getcontact',getContact)
+router.delete('/delete/:id',deleteContact)
 
 export default router;
